@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Results | West CTA Career Explorer</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#9f132e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/results.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header no-print">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="West CTA Career Explorer home">
+        <span class="brand-mark" data-logo></span>
+        <span class="brand-text"><strong>Career Explorer</strong><span>West Career &amp; Technical Academy</span></span>
+      </a>
+      <nav class="nav" aria-label="Results">
+        <a href="#careers">Careers</a>
+        <a href="#colleges">Colleges</a>
+        <a class="btn btn-sm btn-secondary" href="quiz.html" id="retake-top">Retake quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="empty" class="container empty" hidden>
+      <div class="card">
+        <div class="icon-chip" data-icon="chart"></div>
+        <h1>No results yet</h1>
+        <p class="lead">Results appear here after you finish the quiz. Your answers are only kept in this browser tab, so closing the tab clears them.</p>
+        <a class="btn" href="quiz.html">Take the quiz <span data-icon="arrow" data-icon-class="arrow"></span></a>
+      </div>
+    </div>
+
+    <div id="results" hidden>
+      <section class="r-hero">
+        <div class="container">
+          <p class="eyebrow">Your results</p>
+          <h1 id="r-headline">Here is your career map.</h1>
+          <p class="lead" id="r-sub"></p>
+          <ul class="code-chips" id="r-code" role="list" aria-label="Your top three interest types"></ul>
+          <div class="r-actions no-print">
+            <a class="btn btn-secondary btn-sm" href="#careers">Jump to careers</a>
+            <button class="btn btn-ghost btn-sm" type="button" id="btn-print"><span data-icon="print"></span>Print or save as PDF</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="interests">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Your interests</p>
+            <h2>What you are drawn to</h2>
+            <p class="lead">The six corners show how strongly each interest type showed up in your answers. Your top three are highlighted in gold.</p>
+          </div>
+          <div class="two-col">
+            <div class="card chart-card"><div id="radar"></div></div>
+            <div>
+              <ul class="type-list" id="type-list" role="list"></ul>
+              <details class="table-alt">
+                <summary>View interest scores as a table</summary>
+                <table><thead><tr><th scope="col">Interest type</th><th scope="col">Score (out of 40)</th></tr></thead><tbody id="type-table"></tbody></table>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="strengths" class="alt">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Strengths and growth areas</p>
+            <h2>What you are good at, and what to build</h2>
+            <p class="lead">Crimson bars are how you rated yourself. Gold bars are how you did on the quick skill check, shown for the four skills we could check.</p>
+          </div>
+          <div class="two-col">
+            <div class="card"><div id="skills-chart"></div></div>
+            <div>
+              <div class="card" id="insights-card">
+                <h3>Things worth noticing</h3>
+                <ul class="insights" id="insights" role="list"></ul>
+              </div>
+              <p class="fineprint">The skill check is only 12 short questions. It is a conversation starter, not a test score.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="values">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Work values</p>
+            <h2>What matters to you in a job</h2>
+          </div>
+          <div class="card narrow-card"><div id="values-chart"></div></div>
+        </div>
+      </section>
+
+      <section id="careers" class="alt">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Your top five</p>
+            <h2>Career paths to explore</h2>
+            <p class="lead">Fit scores combine your interests (60%), skills (25%), and values (15%). A higher score means a closer match, not a guarantee.</p>
+          </div>
+          <ol class="career-list" id="career-list" role="list"></ol>
+        </div>
+      </section>
+
+      <section id="colleges">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Where to study</p>
+            <h2>College programs to look at</h2>
+            <p class="lead">Based on your top five. UNLV, UNR, and CSN are always listed first when they have a related program.</p>
+          </div>
+          <div class="college-grid" id="college-grid"></div>
+          <p class="fineprint">Program names and pages change. Check each school's site for current requirements.</p>
+          <ul class="explore-more" id="explore-more" role="list"></ul>
+        </div>
+      </section>
+
+      <section id="email" class="alt no-print">
+        <div class="container">
+          <div class="email-card card">
+            <div class="icon-chip gold" data-icon="mail"></div>
+            <h2>Email me my results</h2>
+            <p class="lead">Want a copy to keep? Enter an email address below.</p>
+            <div class="warn" role="note">
+              <span data-icon="alert"></span>
+              <p><strong>Do NOT use your school email.</strong> School accounts cannot receive email from outside senders. Use a personal email or a parent or guardian's email.</p>
+            </div>
+            <form id="email-form" novalidate>
+              <label for="email-input">Personal email address</label>
+              <div class="email-row">
+                <input id="email-input" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-describedby="email-msg" required>
+                <button class="btn" type="submit">Send my results</button>
+              </div>
+              <p id="email-msg" class="email-msg" role="status" aria-live="polite"></p>
+            </form>
+            <p class="fineprint">Mock-up note: in this version nothing is actually sent, and the address is not stored anywhere.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-end no-print">
+        <div class="container">
+          <h2>Not quite right? Try again.</h2>
+          <p>Your interests can change, and so can your answers. Retake the quiz any time.</p>
+          <a class="btn btn-secondary" href="quiz.html" id="retake-bottom"><span data-icon="refresh"></span>Retake the quiz</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer no-print">
+    <div class="container">
+      <span>Phase 1 mock-up for West Career &amp; Technical Academy. Not an official CCSD site.</span>
+      <span>Results are a starting point for exploring, not a prediction.</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/logo-grid.js"></script>
+  <script src="assets/js/mark.js"></script>
+  <script src="assets/js/questions.js"></script>
+  <script src="assets/js/careers.js"></script>
+  <script src="assets/js/colleges.js"></script>
+  <script src="assets/js/scoring.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/results.js"></script>
+</body>
+</html>

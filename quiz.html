@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Take the Quiz | West CTA Career Explorer</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#9f132e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/quiz.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="West CTA Career Explorer home">
+        <span class="brand-mark" data-logo></span>
+        <span class="brand-text"><strong>Career Explorer</strong><span>West Career &amp; Technical Academy</span></span>
+      </a>
+      <nav class="nav" aria-label="Quiz">
+        <a class="btn btn-ghost btn-sm" href="index.html">Exit quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="quiz-main">
+    <div class="narrow">
+      <div class="quiz-top" aria-live="polite">
+        <p class="quiz-part" id="quiz-part"></p>
+        <div class="progress" role="progressbar" aria-labelledby="quiz-part" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="quiz-progress"><span id="quiz-bar"></span></div>
+      </div>
+      <h1 class="q-title" id="q-title" tabindex="-1"></h1>
+      <p class="q-help" id="q-help"></p>
+      <form id="q-form" novalidate></form>
+      <div class="q-actions">
+        <button class="btn btn-secondary" type="button" id="btn-back"><span data-icon="back"></span>Back</button>
+        <p class="q-status" id="q-status" role="status"></p>
+        <button class="btn" type="button" id="btn-next">Next <span data-icon="arrow" data-icon-class="arrow"></span></button>
+      </div>
+      <noscript><p class="callout-plain">This quiz needs JavaScript. Please turn it on and reload the page.</p></noscript>
+    </div>
+  </main>
+
+  <script src="assets/js/logo-grid.js"></script>
+  <script src="assets/js/mark.js"></script>
+  <script src="assets/js/questions.js"></script>
+  <script src="assets/js/quiz.js"></script>
+</body>
+</html>

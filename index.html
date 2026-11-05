@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Career Explorer | West CTA</title>
+  <meta name="description" content="A free, 12 to 15 minute career interest quiz for high school students. Discover your interests, strengths, and top career paths, with Nevada college programs to explore.">
+  <meta name="theme-color" content="#9f132e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%239f132e'/%3E%3Cpath d='M6 9l4 14 6-10 6 10 4-14' fill='none' stroke='%23c9a52d' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/results.css">
+  <noscript><style>#splash{display:none!important}</style></noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div id="splash" class="splash" role="dialog" aria-label="West CTA Career Explorer is loading">
+    <button class="btn btn-ghost btn-sm splash-skip" type="button" data-skip>Skip intro</button>
+    <div class="splash-stage">
+      <canvas aria-hidden="true"></canvas>
+      <p class="splash-title">Career Explorer</p>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="West CTA Career Explorer home">
+        <span class="brand-mark" data-logo></span>
+        <span class="brand-text"><strong>Career Explorer</strong><span>West Career &amp; Technical Academy</span></span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#methodology">Methodology</a>
+        <a class="btn btn-sm" href="quiz.html">Take the quiz <span data-icon="arrow" data-icon-class="arrow"></span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Career interest quiz for grades 9-12</p>
+          <h1>Find the careers that fit <span class="hl">who you are.</span></h1>
+          <p class="lead">Answer questions about what you enjoy, what you are good at, and what matters to you at work. See a map of your interests and strengths, your top five career paths, and Nevada college programs to explore next.</p>
+          <div class="hero-actions">
+            <a class="btn" href="quiz.html">Start the quiz <span data-icon="arrow" data-icon-class="arrow"></span></a>
+            <a class="btn btn-secondary" href="#methodology">See how it works</a>
+          </div>
+          <ul class="hero-facts" role="list">
+            <li><span data-icon="clock"></span>About 12 to 15 minutes</li>
+            <li><span data-icon="lock"></span>Nothing is saved or sent</li>
+          </ul>
+        </div>
+        <div class="hero-visual" aria-hidden="false">
+          <div class="sample-card">
+            <p class="sample-label">Sample result</p>
+            <div id="sample-radar"></div>
+            <p class="sample-note">Your own map appears when you finish the quiz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick facts -->
+    <section class="strip" aria-label="Quiz at a glance">
+      <div class="container strip-grid">
+        <div><strong>90</strong><span>questions in 4 parts</span></div>
+        <div><strong>6</strong><span>interest areas mapped</span></div>
+        <div><strong>5</strong><span>career paths matched</span></div>
+        <div><strong>0</strong><span>answers stored</span></div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2>Four short parts, one clear picture.</h2>
+          <p class="lead">There are no right or wrong answers. Go with your first instinct and answer for who you are today.</p>
+        </div>
+        <div class="steps">
+          <article class="card hoverable">
+            <div class="icon-chip" data-icon="heart"></div>
+            <h3>1. Interests</h3>
+            <p>Rate 60 activities from "strongly dislike" to "strongly like." This shows which of six interest types describes you best.</p>
+          </article>
+          <article class="card hoverable">
+            <div class="icon-chip gold" data-icon="zap"></div>
+            <h3>2. Skills</h3>
+            <p>Rate your confidence in 12 skill areas, then try 12 quick skill-check questions. We compare how you see yourself with how you did.</p>
+          </article>
+          <article class="card hoverable">
+            <div class="icon-chip" data-icon="compass"></div>
+            <h3>3. Work values</h3>
+            <p>Tell us what matters most in a job, like independence, helping others, recognition, or a steady paycheck.</p>
+          </article>
+          <article class="card hoverable">
+            <div class="icon-chip gold" data-icon="chart"></div>
+            <h3>4. Your results</h3>
+            <p>See charts of your interests, strengths, and growth areas, your top five careers, and colleges to explore, starting with UNLV, UNR, and CSN.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology -->
+    <section id="methodology" class="method">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Methodology</p>
+          <h2>Built on how career counselors actually do it.</h2>
+          <p class="lead">This quiz follows the same basic recipe as well-known career tools: measure interests, skills, and values, then compare them to occupations. Here is what we based it on.</p>
+        </div>
+
+        <div class="method-grid">
+          <article class="card">
+            <h3>Interests: Holland's six types</h3>
+            <p>Psychologist John Holland described six interest types: Realistic, Investigative, Artistic, Social, Enterprising, and Conventional (RIASEC). The quiz uses 60 statements, 10 for each type. That is the same layout as the O*NET Interest Profiler Short Form, which reported scale reliabilities of .78 to .87. Our statements are original, written for this mock-up.</p>
+          </article>
+          <article class="card">
+            <h3>Skills: self-ratings plus a quick check</h3>
+            <p>The ASVAB Career Exploration Program reports verbal, math, and science and technical skills. We use 12 self-rated skills plus 12 short, untimed questions covering verbal, number, spatial, and mechanical reasoning. This is a screener, not a validated test.</p>
+          </article>
+          <article class="card">
+            <h3>Work values: six categories</h3>
+            <p>We borrow the six work values used in the ASVAB program: achievement, working conditions, recognition, relationships, support, and independence. Careers are matched to the two values that fit them best.</p>
+          </article>
+          <article class="card">
+            <h3>Matching: interests count most</h3>
+            <p>Each career gets a fit score: 60% interests, 25% skills, and 15% values. Interests are weighted most because research links interest fit to job performance and staying on a path. Your scores are compared to your own average, so liking everything (or nothing) does not skew the list.</p>
+          </article>
+        </div>
+
+        <div class="callout" role="note">
+          <div class="icon-chip gold" data-icon="alert"></div>
+          <div>
+            <h3>What this quiz is, and is not</h3>
+            <p>Research finds that matching your interests to a field has a moderate link to success and persistence, and the effect varies by field and by person (Nye et al., 2012; Ertl et al., 2022). So treat your results as a starting point for exploring, not a prediction or a rule. Talk with a counselor, job shadow, and keep an open mind.</p>
+          </div>
+        </div>
+
+        <details class="refs">
+          <summary>References (APA 7th)</summary>
+          <ul>
+            <li>ASVAB Career Exploration Program. (n.d.). <em>ASVAB CEP student guide</em> [PDF]. https://prod-media.asvabprogram.com/CEP_PDF_Contents/ASVABCEP_STUDENT_GUIDE.pdf</li>
+            <li>Ertl, B., Hartmann, F. G., &amp; Wunderlich, A. (2022). Impact of interest congruence on study outcomes. <em>Frontiers in Psychology, 13</em>, Article 816620. https://doi.org/10.3389/fpsyg.2022.816620</li>
+            <li>Holland, J. L. (1997). <em>Making vocational choices: A theory of vocational personalities and work environments</em> (3rd ed.). Psychological Assessment Resources.</li>
+            <li>Nye, C. D., Su, R., Rounds, J., &amp; Drasgow, F. (2012). Vocational interests and performance: A quantitative summary of over 60 years of research. <em>Perspectives on Psychological Science, 7</em>(4), 384-403. https://doi.org/10.1177/1745691612449021</li>
+            <li>O*NET Center. (n.d.). <em>Interest Profiler Short Form psychometric characteristics</em> [PDF]. https://www.onetcenter.org/dl_files/IPSF_Psychometric.pdf</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- Privacy + CTA -->
+    <section class="privacy">
+      <div class="container privacy-grid">
+        <div>
+          <div class="icon-chip" data-icon="lock"></div>
+          <h3>Your answers stay with you</h3>
+          <p>This version does not save your answers or send them anywhere. They live in your browser tab until you close it. At the end you can try the email option, but in this mock-up it does not actually send.</p>
+        </div>
+        <div>
+          <div class="icon-chip gold" data-icon="cap"></div>
+          <h3>Made for Nevada students</h3>
+          <p>Your results link to degree and certificate programs at UNLV, UNR, and CSN first, then other schools, so you can see what is possible close to home.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container">
+        <h2>Ready to find your fit?</h2>
+        <p>It takes about as long as a lunch period.</p>
+        <a class="btn btn-gold" href="quiz.html">Take the quiz <span data-icon="arrow" data-icon-class="arrow"></span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>Phase 1 mock-up for West Career &amp; Technical Academy. Not an official CCSD site.</span>
+      <span>Career data is approximate and for exploration only.</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/logo-grid.js"></script>
+  <script src="assets/js/mark.js"></script>
+  <script src="assets/js/questions.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script>
+    (function () {
+      var el = document.getElementById("sample-radar");
+      if (el && window.WCTA_CHARTS) {
+        WCTA_CHARTS.radar(el, { R: 12, I: 31, A: 20, S: 17, E: 11, C: 26 }, WCTA_QUIZ.TYPES, ["I", "C", "A"]);
+      }
+    })();
+  </script>
+  <script src="assets/js/splash.js"></script>
+</body>
+</html>

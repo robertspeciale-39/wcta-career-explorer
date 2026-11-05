@@ -1,0 +1,82 @@
+/* WCTA Career Explorer — shared styles */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--fs-md); line-height: 1.6;
+  -webkit-font-smoothing: antialiased; min-height: 100dvh;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; margin: 0 0 var(--s3); letter-spacing: -0.02em; color: var(--ink); }
+h1 { font-size: var(--fs-3xl); font-weight: 800; }
+h2 { font-size: var(--fs-2xl); font-weight: 800; }
+h3 { font-size: var(--fs-lg); font-weight: 700; }
+p { margin: 0 0 var(--s4); }
+a { color: var(--crimson-600); text-underline-offset: 3px; }
+a:hover { color: var(--crimson-800); }
+img, svg { max-width: 100%; }
+.container { width: min(100% - 32px, var(--max)); margin-inline: auto; }
+.narrow { width: min(100% - 32px, 760px); margin-inline: auto; }
+.eyebrow { font-family: var(--font-display); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-700); margin-bottom: var(--s3); }
+.lead { font-size: var(--fs-lg); color: var(--ink-2); max-width: 60ch; }
+.muted { color: var(--muted); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+.skip-link { position: absolute; left: 12px; top: -60px; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: var(--r-sm); z-index: 1000; transition: top var(--t-fast); }
+.skip-link:focus { top: 12px; }
+
+/* Buttons: every variant has hover, active and focus states */
+.btn {
+  --btn-bg: var(--primary); --btn-fg: var(--on-primary); --btn-bd: transparent;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 12px 26px; border-radius: var(--r-pill);
+  border: 2px solid var(--btn-bd); background: var(--btn-bg); color: var(--btn-fg);
+  font: 700 var(--fs-md)/1 var(--font-display); text-decoration: none; cursor: pointer;
+  box-shadow: var(--shadow-sm); touch-action: manipulation;
+  transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med) var(--ease-out), background-color var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+}
+.btn svg { width: 20px; height: 20px; flex: none; transition: transform var(--t-med) var(--ease-out); }
+.btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); --btn-bg: var(--crimson-700); color: var(--btn-fg); }
+.btn:hover svg.arrow { transform: translateX(4px); }
+.btn:active { transform: translateY(0) scale(.98); box-shadow: var(--shadow-sm); }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-secondary { --btn-bg: var(--surface); --btn-fg: var(--crimson-600); --btn-bd: var(--crimson-600); box-shadow: none; }
+.btn-secondary:hover { --btn-bg: var(--crimson-50); --btn-fg: var(--crimson-800); --btn-bd: var(--crimson-800); }
+.btn-gold { --btn-bg: var(--gold-500); --btn-fg: var(--ink); }
+.btn-gold:hover { --btn-bg: var(--gold-400); --btn-fg: var(--ink); }
+.btn-ghost { --btn-bg: transparent; --btn-fg: var(--ink-2); box-shadow: none; }
+.btn-ghost:hover { --btn-bg: var(--sunken); --btn-fg: var(--ink); box-shadow: none; transform: none; }
+.btn-sm { min-height: 44px; padding: 10px 18px; font-size: var(--fs-sm); }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(250,248,245,.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); min-height: 72px; }
+.brand { display: flex; align-items: center; gap: var(--s3); text-decoration: none; color: var(--ink); }
+.brand-mark { width: 44px; height: 44px; flex: none; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-text strong { font-family: var(--font-display); font-size: var(--fs-md); font-weight: 800; letter-spacing: -.01em; }
+.brand-text span { font-size: var(--fs-xs); color: var(--muted); font-weight: 500; }
+.nav { display: flex; align-items: center; gap: var(--s2); }
+.nav a:not(.btn) { padding: 10px 14px; border-radius: var(--r-pill); color: var(--ink-2); text-decoration: none; font-weight: 600; font-size: var(--fs-sm); min-height: 44px; display: inline-flex; align-items: center; transition: background-color var(--t-fast), color var(--t-fast); }
+.nav a:not(.btn):hover { background: var(--crimson-50); color: var(--crimson-700); }
+@media (max-width: 720px) { .nav a:not(.btn) { display: none; } .brand-text span { display: none; } }
+
+/* Cards */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s5); box-shadow: var(--shadow-sm); }
+a.card, .card.hoverable { transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med) var(--ease-out), border-color var(--t-fast); text-decoration: none; color: inherit; }
+a.card:hover, .card.hoverable:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--crimson-100); }
+
+section { padding-block: var(--s8); }
+.section-head { max-width: 62ch; margin-bottom: var(--s6); }
+
+.icon-chip { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--crimson-50); color: var(--crimson-600); margin-bottom: var(--s4); }
+.icon-chip svg { width: 26px; height: 26px; }
+.icon-chip.gold { background: var(--gold-100); color: var(--gold-700); }
+
+.footer { border-top: 1px solid var(--line); padding-block: var(--s6); color: var(--muted); font-size: var(--fs-sm); }
+.footer .container { display: flex; flex-wrap: wrap; gap: var(--s4); justify-content: space-between; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .btn:hover, a.card:hover, .card.hoverable:hover { transform: none; }
+}

@@ -1,0 +1,61 @@
+/* Design tokens. Palette sampled from wctawranglers.com:
+   crimson rgb(159,19,46), gold rgb(201,165,45), charcoal #2b2929, light neutral #f3f3f3. */
+:root {
+  /* Brand */
+  --crimson-50:  #fbeff1;
+  --crimson-100: #f4d5db;
+  --crimson-500: #b8203d;
+  --crimson-600: #9f132e;   /* primary */
+  --crimson-700: #7e0f24;   /* hover */
+  --crimson-800: #5e0a1b;   /* deep surfaces */
+  --gold-100: #f8efcb;
+  --gold-400: #e2ba32;
+  --gold-500: #c9a52d;      /* accent */
+  --gold-700: #8a6d12;      /* gold for text on light (5.1:1 on white) */
+
+  /* Neutrals */
+  --ink:     #2b2929;
+  --ink-2:   #4a4646;
+  --muted:   #6b6666;
+  --line:    #e7e2db;
+  --bg:      #faf8f5;
+  --surface: #ffffff;
+  --sunken:  #f3f0ea;
+
+  /* Semantic */
+  --primary: var(--crimson-600);
+  --primary-hover: var(--crimson-700);
+  --on-primary: #ffffff;
+  --accent: var(--gold-500);
+  --on-accent: var(--ink);
+  --focus: #1a1a1a;
+  --success: #1f7a4d;
+  --danger: #b3261e;
+
+  /* Type */
+  --font-display: "Plus Jakarta Sans", "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.625rem;
+  --fs-2xl: 2.25rem;
+  --fs-3xl: clamp(2.5rem, 5.5vw, 4rem);
+
+  /* Space (4/8 scale) */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+
+  /* Shape + depth */
+  --r-sm: 10px; --r-md: 16px; --r-lg: 24px; --r-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(43,41,41,.06), 0 1px 3px rgba(43,41,41,.06);
+  --shadow-md: 0 6px 18px rgba(43,41,41,.08), 0 2px 6px rgba(43,41,41,.05);
+  --shadow-lg: 0 18px 44px rgba(94,10,27,.16), 0 4px 12px rgba(43,41,41,.06);
+
+  /* Motion */
+  --ease-out: cubic-bezier(.22,.8,.3,1);
+  --t-fast: 150ms;
+  --t-med: 240ms;
+
+  --max: 1120px;
+}
