@@ -143,3 +143,6 @@ section.alt { background: var(--sunken); }
   .fill, .chart .shape { animation: none !important; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10px; color: #555; word-break: break-all; }
 }
+
+.demo-banner { background: var(--gold-100); border-bottom: 2px solid var(--gold-500); color: #4d3b00; padding-block: 12px; font-size: var(--fs-sm); }
+.demo-banner a { color: var(--crimson-800); font-weight: 700; margin-left: 6px; }

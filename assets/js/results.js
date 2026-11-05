@@ -4,13 +4,28 @@
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
+  // Demo mode (results.html?demo=1): a made-up sample student, never read from or written to storage.
+  const isDemo = new URLSearchParams(location.search).get("demo") === "1";
+  function sampleAnswers() {
+    const lik = { I: 4, R: 3, A: 3, S: 2, E: 1, C: 1 };
+    const interest = {};
+    Q.interestItems.forEach((it, i) => { const t = it.id.split("-")[1][0]; interest[it.id] = Math.max(0, Math.min(4, lik[t] + (i % 3 === 0 ? -1 : i % 3 === 1 ? 0 : 1) * (lik[t] > 1 ? 1 : 0) + (lik[t] <= 1 && i % 4 === 0 ? 1 : 0))); });
+    const high = { scientific: 5, technical: 5, verbal: 4, numeric: 4, persistence: 4, creative: 4, mechanical: 3, spatial: 4, handson: 3, organizing: 3, people: 2, leadership: 2 };
+    const skillSelf = {}; Q.skills.forEach((k) => { skillSelf[k.key] = high[k.key] || 3; });
+    const apt = {}; Q.aptitude.forEach((it) => { const ans = it.shape ? it.shape.answer : it.answer; const miss = it.id === "apt-m2" || it.id === "apt-n3"; apt[it.id] = miss ? (ans + 1) % (it.shape ? it.shape.options.length : it.options.length) : ans; });
+    const vals = { achievement: 5, independence: 4, working: 3, support: 3, relationships: 2, recognition: 2 };
+    const values = {}; Q.values.forEach((v, i) => { values[v.key] = vals[v.key] || 3; });
+    return { interest, skillSelf, apt, values };
+  }
   let answers = null;
-  try { answers = JSON.parse(sessionStorage.getItem("wcta.answers") || "null"); } catch (e) {}
+  if (isDemo) answers = sampleAnswers();
+  else try { answers = JSON.parse(sessionStorage.getItem("wcta.answers") || "null"); } catch (e) {}
   const complete = answers && answers.interest && Object.keys(answers.interest).length >= 60;
   if (!complete) { $("empty").hidden = false; UI.hydrate($("empty")); return; }
 
   const res = S.score(answers, Q, C);
   $("results").hidden = false;
+  if (isDemo) $("demo-banner").hidden = false;
 
   // ---- hero
   const names = res.hollandCode.map((t) => Q.TYPES[t].name);
@@ -66,7 +81,7 @@
 
   // ---- print + retake
   $("btn-print").addEventListener("click", () => window.print());
-  ["retake-top", "retake-bottom"].forEach((id) => $(id).addEventListener("click", () => { try { sessionStorage.removeItem("wcta.answers"); sessionStorage.removeItem("wcta.quiz.v1"); } catch (e) {} }));
+  ["retake-top", "retake-bottom"].forEach((id) => $(id).addEventListener("click", () => { if (isDemo) return; try { sessionStorage.removeItem("wcta.answers"); sessionStorage.removeItem("wcta.quiz.v1"); } catch (e) {} }));
 
   // ---- email (mock-up: validates and confirms, never sends or stores)
   const form = $("email-form"), input = $("email-input"), msg = $("email-msg");
