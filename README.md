@@ -9,7 +9,7 @@ Open `index.html` through any static server, for example `python3 -m http.server
 1. Animated splash: 1s and 0s assemble the West CTA logo (once per session, skippable, respects reduced motion).
 2. Landing page: quiz description, methodology summary, APA references.
 3. Quiz (about 12 to 15 minutes, 90 items): 60 interest items, 12 skill self-ratings, 12 original skill-check items, 6 work values.
-4. Results: interest radar, strengths and growth areas, work values, top 5 careers with fit scores, and college programs with UNLV, UNR, and CSN listed first.
+4. Results: interest radar, strengths and growth areas, work values, top 5 careers with fit scores, and college programs in Nevada, Utah, and Arizona (one tab per state). Nevada always comes first, with UNLV, UNR, and CSN at the top. Career cards show Nevada programs and name the Utah and Arizona schools that also fit.
 5. Email results: mock-up only. Validates the address, blocks school domains, shows a confirmation. Nothing is sent or stored.
 
 ## Methodology
@@ -28,6 +28,7 @@ Open `index.html` through any static server, for example `python3 -m http.server
 ## Known gaps to review before wider use
 - Career RIASEC codes are approximations. Cross-check them against O*NET OnLine.
 - College links: UNLV and CSN pages were checked. UNR links point to the colleges-and-schools hub because individual UNR pages could not be checked. NSU and TMCC pages block automated checks, so verify them by hand.
+- Utah and Arizona schools (added Nov 2026): University of Utah, Utah State, BYU, Utah Valley, Weber State, Southern Utah, Utah Tech, Salt Lake CC, Arizona State, University of Arizona, Northern Arizona, Grand Canyon, Maricopa Community Colleges, and Pima CC. Every link was checked on Nov 5, 2026 (status and page title) except Maricopa, which blocks automated checks. Links go to the college or school that houses each program, not to individual majors. Utah Tech, NAU, Maricopa, and Pima use a catalog or program search page for some fields, and those links say so. To add a school, add an entry to `OUT_OF_STATE` in `assets/js/colleges.js`; `FIELD_AREAS` maps its program areas to careers.
 - The school email block covers `*.ccsd.net` and addresses containing "k12". Confirm the student email domain with CCSD.
 
 ## Phase 2 ideas (not built)

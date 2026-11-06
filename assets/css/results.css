@@ -103,9 +103,27 @@ section.alt { background: var(--sunken); }
 .inst { display: inline-block; padding: 3px 9px; border-radius: 8px; font: 800 var(--fs-xs)/1.3 var(--font-display); letter-spacing: .04em; background: var(--ink); color: #fff; }
 .inst-unlv { background: #b3112b; } .inst-unr { background: #1f3a68; } .inst-csn { background: #0b6b57; }
 .inst-nsu, .inst-tmcc { background: #5b5656; }
+/* Utah */
+.inst-utah { background: #be0000; } .inst-usu { background: #0f2439; } .inst-byu { background: #002e5d; } .inst-uvu { background: #275d38; }
+.inst-weber { background: #492365; } .inst-suu { background: #a6192e; } .inst-utahtech { background: #003058; } .inst-slcc { background: #00205b; }
+/* Arizona */
+.inst-asu { background: #8c1d40; } .inst-ua { background: #ab0520; } .inst-nau { background: #003466; } .inst-gcu { background: #522398; }
+.inst-maricopa { background: #1d4f91; } .inst-pima { background: #00447c; }
+.also { margin: var(--s3) 0 0; font-size: var(--fs-sm); color: var(--muted); }
+.also a { font-weight: 700; }
 
 /* Colleges */
-.college-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: var(--s5); }
+.college-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: var(--s5); }
+.state-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 var(--s5); }
+.state-tabs [role="tab"] { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 18px; border-radius: var(--r-pill); border: 2px solid var(--line); background: var(--surface); color: var(--ink); font: 700 var(--fs-sm)/1.2 var(--font-display); cursor: pointer; transition: border-color var(--t-fast), background-color var(--t-fast), color var(--t-fast); }
+.state-tabs [role="tab"]:hover { border-color: var(--crimson-600); background: var(--crimson-50); color: var(--crimson-800); }
+.state-tabs [role="tab"][aria-selected="true"] { background: var(--crimson-700); border-color: var(--crimson-700); color: #fff; }
+.state-tabs [role="tab"]:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.state-tabs .count { display: inline-block; min-width: 1.6em; padding: 1px 7px; border-radius: var(--r-pill); background: rgba(0,0,0,.08); font-size: var(--fs-xs); text-align: center; }
+.state-tabs [aria-selected="true"] .count { background: rgba(255,255,255,.22); }
+.state-panel:focus-visible { outline: 3px solid var(--focus); outline-offset: 6px; border-radius: var(--r-md); }
+.state-h { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media print { .state-panel[hidden] { display: block !important; } .state-panel + .state-panel { margin-top: 24px; } .state-h { position: static; width: auto; height: auto; clip: auto; margin: 0 0 12px; font-size: 1.2rem; } }
 .college { transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med); }
 .college:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .college.priority { border-top: 5px solid var(--gold-500); }

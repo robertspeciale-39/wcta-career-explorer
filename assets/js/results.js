@@ -56,7 +56,11 @@
   // ---- careers
   const instBadge = (id) => '<span class="inst inst-' + id + '">' + esc(COL.INST[id].name) + "</span>";
   $("career-list").innerHTML = res.matches.map((m, i) => {
-    const links = S.collegesForCareer(m.career, COL).slice(0, 5);
+    const all = S.collegesForCareer(m.career, COL);
+    const links = all.filter((l) => COL.INST[l.inst].state === "NV").slice(0, 5);
+    const away = [...new Set(all.filter((l) => COL.INST[l.inst].state !== "NV").map((l) => COL.INST[l.inst].name))];
+    const alsoNames = away.length > 4 ? away.slice(0, 4).join(", ") + ", and " + (away.length - 4) + " more" : away.join(", ");
+    const also = away.length ? '<p class="also">Also in Utah and Arizona: ' + esc(alsoNames) + '. <a href="#colleges" data-show-state>See out-of-state schools</a></p>' : "";
     const parts = [["Interests", m.parts.interest], ["Skills", m.parts.skills], ["Values", m.parts.values]];
     return '<li class="career-card card">' +
       '<div class="career-top"><span class="rank" aria-hidden="true">' + (i + 1) + '</span><div class="career-title"><h3>' + esc(m.career.title) + '</h3><p class="cluster">' + esc(m.career.cluster) + "</p></div>" +
@@ -67,16 +71,40 @@
       '<dl class="facts"><div><dt>Typical education</dt><dd>' + esc(m.career.edu) + "</dd></div>" +
       '<div><dt>Related West CTA program</dt><dd>' + esc(m.career.west) + "</dd></div></dl>" +
       '<h4 class="links-h">Programs to explore</h4><ul class="links" role="list">' +
-      links.map((l) => '<li><a class="link-pill" href="' + esc(l.url) + '" target="_blank" rel="noopener noreferrer">' + instBadge(l.inst) + '<span>' + esc(l.label) + "</span>" + UI.icon("external") + '<span class="sr-only">(opens in a new tab)</span></a></li>').join("") + "</ul></li>";
+      links.map((l) => '<li><a class="link-pill" href="' + esc(l.url) + '" target="_blank" rel="noopener noreferrer">' + instBadge(l.inst) + '<span>' + esc(l.label) + "</span>" + UI.icon("external") + '<span class="sr-only">(opens in a new tab)</span></a></li>').join("") + "</ul>" + also + "</li>";
   }).join("");
 
-  // ---- consolidated colleges (UNLV, UNR, CSN first)
+  // ---- consolidated colleges, one tab per state (Nevada first; UNLV, UNR, CSN lead it)
   const groups = S.collegesFor(res.matches, COL);
-  $("college-grid").innerHTML = groups.map((g) => {
+  const card = (g) => {
     const pri = ["unlv", "unr", "csn"].includes(g.inst.id);
     return '<article class="card college' + (pri ? " priority" : "") + '"><div class="college-head">' + instBadge(g.inst.id) + "<h3>" + esc(g.inst.full) + '</h3><p class="muted">' + esc(g.inst.city) + "</p></div><ul role=\"list\">" +
       g.links.map((l) => '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener noreferrer">' + esc(l.label) + '<span class="sr-only"> (opens in a new tab)</span></a><span class="for">For: ' + esc(l.careers.join(", ")) + "</span></li>").join("") + "</ul></article>";
-  }).join("");
+  };
+  const states = COL.STATES.map((st) => ({ st, groups: groups.filter((g) => g.inst.state === st.id) })).filter((x) => x.groups.length);
+  $("state-tabs").innerHTML = states.map((x, i) =>
+    '<button type="button" role="tab" id="tab-' + x.st.id + '" aria-controls="panel-' + x.st.id + '" aria-selected="' + (i === 0) + '" tabindex="' + (i === 0 ? 0 : -1) + '">' +
+    esc(x.st.name) + ' <span class="count">' + x.groups.length + "</span></button>").join("");
+  $("college-grid").innerHTML = states.map((x, i) =>
+    '<div class="state-panel" role="tabpanel" id="panel-' + x.st.id + '" aria-labelledby="tab-' + x.st.id + '" tabindex="0"' + (i === 0 ? "" : " hidden") + '>' +
+    '<h3 class="state-h">' + esc(x.st.name) + '</h3><div class="college-cards">' + x.groups.map(card).join("") + "</div></div>").join("");
+  const tabs = [...$("state-tabs").querySelectorAll('[role="tab"]')];
+  const showState = (id, focus) => tabs.forEach((t) => {
+    const on = t.id === "tab-" + id;
+    t.setAttribute("aria-selected", on); t.tabIndex = on ? 0 : -1;
+    $(t.getAttribute("aria-controls")).hidden = !on;
+    if (on && focus) t.focus();
+  });
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => showState(t.id.slice(4)));
+    t.addEventListener("keydown", (e) => {
+      const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (k) { e.preventDefault(); showState(tabs[(i + k + tabs.length) % tabs.length].id.slice(4), true); }
+      else if (e.key === "Home" || e.key === "End") { e.preventDefault(); showState(tabs[e.key === "Home" ? 0 : tabs.length - 1].id.slice(4), true); }
+    });
+  });
+  const firstAway = tabs.find((t) => t.id !== "tab-NV");
+  document.querySelectorAll("[data-show-state]").forEach((a) => a.addEventListener("click", () => { if (firstAway) showState(firstAway.id.slice(4)); }));
   $("explore-more").innerHTML = COL.EXPLORE_MORE.map((l) => '<li><a class="btn btn-secondary btn-sm" href="' + esc(l.url) + '" target="_blank" rel="noopener noreferrer">' + esc(l.label) + UI.icon("external") + "</a></li>").join("");
 
   // ---- print + retake

@@ -80,5 +80,18 @@ C.forEach(c => {
 });
 ok(true, "per-career link ordering checked for all " + C.length + " careers");
 
+// ---- Utah and Arizona schools
+const STATE_ORDER = { NV: 0, UT: 1, AZ: 2 };
+ok(Object.values(COL.INST).every(i => i.state in STATE_ORDER), "every school has a state (NV, UT, or AZ)");
+ok(Object.values(COL.INST).every(i => Object.values(COL.INST).every(j => STATE_ORDER[i.state] >= STATE_ORDER[j.state] || i.rank < j.rank)), "ranks keep Nevada before Utah before Arizona");
+const used = new Set(); Object.values(COL.FIELDS).forEach(ls => ls.forEach(l => used.add(l.inst)));
+ok(Object.keys(COL.INST).every(id => used.has(id)), "every school appears in at least one field");
+ok(Object.values(COL.FIELDS).every(ls => ls.every(l => COL.INST[l.inst] && /^https:\/\//.test(l.url) && l.label)), "every link has a known school, an https URL, and a label");
+ok(Object.values(COL.FIELDS).every(ls => ls.some(l => COL.INST[l.inst].state === "NV")), "every field still has a Nevada option");
+ok(Object.values(COL.FIELDS).every(ls => { const seen = new Set(); return ls.filter(l => COL.INST[l.inst].state !== "NV").every(l => !seen.has(l.inst) && seen.add(l.inst)); }), "out-of-state schools add at most one link per field");
+ok(["UT", "AZ"].every(st => Object.values(COL.INST).filter(i => i.state === st).length >= 5), "at least five schools each in Utah and Arizona");
+const g2 = S.collegesFor(S.score(answers({ likeTypes: ["I","R"], selfHigh: ["technical"] }), Q, C).matches, COL).map(g => STATE_ORDER[g.inst.state]);
+ok(g2.every((x, i) => i === 0 || g2[i-1] <= x), "consolidated college list is grouped Nevada, then Utah, then Arizona");
+
 console.log(fails ? "\n" + fails + " FAILED" : "\nAll tests passed");
 process.exit(fails ? 1 : 0);
